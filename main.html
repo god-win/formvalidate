@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form validation</title>
+</head>
+<body>
+<form id="my-form">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required><br><br>
+
+  <label for="PN">Phone NO:</label>
+  <input type="text" id="pn" name="Phono" required><br><br>
+ 
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required><br><br>
+
+ 
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required><br><br>
+
+  <label for="Add">Address:</label>
+  <textarea name="address" rows="3" cols="30" maxlength="100" required></textarea><br><br>
+
+
+  <button type="submit">Submit</button>
+
+  <script type="text/javascript">
+
+const form = document.getElementById('my-form');
+const nameRegex = /^[a-zA-Z ]{2,30}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+const phone=/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+const add=/^(\d{1,}) [a-zA-Z0-9\s]+(\,)? [a-zA-Z]+(\,)? [A-Z]{2} [0-9]{5,6}$/;
+ 
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const nameInput = form.elements['name'];
+  const emailInput = form.elements['email'];
+  const passwordInput = form.elements['password'];
+  const pno = form.elements['phono'];
+  const address = form.elements['address'];
+ 
+  if (!nameRegex.test(nameInput.value)) {
+    alert('Please enter a valid name');
+    nameInput.focus();
+    return;
+  }
+ 
+  if (!emailRegex.test(emailInput.value)) {
+    alert('Please enter a valid email');
+    emailInput.focus();
+    return;
+  }
+ 
+  if (!passwordRegex.test(passwordInput.value)) {
+    alert('Please enter a valid password (must contain at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number)');
+    passwordInput.focus();
+    return;
+  }
+  if (!phono.test(pno.value)) {
+    alert('Please enter a valid Reg NO');
+    regno.focus();
+    return;
+  }
+    if (!add.test(address.value)) {
+    alert('Please enter a valid Address');
+    address.focus();
+    return;
+  }
+ 
+  form.submit();
+});
+ 
+
+</script>
+</form>
+</body>
+</html>
